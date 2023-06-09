@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\EmployeesController;
-use App\Http\Controllers\KeysController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,19 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
-Route::get('/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
-Route::post('/employees', [EmployeesController::class, 'store'])->name('employees.store');
-Route::get('/employees/{employee}/edit', [EmployeesController::class, 'edit'])->name('employees.edit');
-Route::put('/employees/{employee}/update', [EmployeesController::class, 'update'])->name('employees.update');
-Route::delete('/employees/{employee}/delete', [EmployeesController::class, 'delete'])->name('employees.delete');
+require __DIR__.'/auth.php';
 
-Route::get('/keys', [KeysController::class, 'index'])->name('keys.index');
-Route::get('/keys/create', [KeysController::class, 'create'])->name('keys.create');
-Route::post('/keys', [KeysController::class, 'store'])->name('keys.store');
-Route::get('/keys/{key}/edit', [KeysController::class, 'edit'])->name('keys.edit');
-Route::put('/keys/{key}/update', [KeysController::class, 'update'])->name('keys.update');
-Route::delete('/keys/{key}/delete', [KeysController::class, 'delete'])->name('keys.delete');
