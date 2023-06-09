@@ -15,6 +15,7 @@
                             <p>{{ session('success') }}</p>
                         @endif
                     </div>
+                    <br/>
 
                     <a class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" href="{{ route('keys.create') }}">Add new key</a>
 
@@ -23,7 +24,7 @@
                             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                                 <div class="overflow-hidden">
 
-                                    <table class="min-w-full text-left text-sm font-light">
+                                    <table class="w-full text-left text-sm font-light">
                                         <thead class="border-b font-medium dark:border-neutral-500">
                                         <tr>
                                             <th scope="col" class="px-6 py-4">ID</th>
@@ -54,7 +55,7 @@
                                                         <form method="post" action="{{ route('keys.delete', ['key' => $key]) }}">
                                                             @csrf
                                                             @method('delete')
-                                                            <input class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded" type="submit" value="Delete">
+                                                            <button class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded" type="submit">Delete</button>
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -66,41 +67,6 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <table border="1">
-                        <tr>
-                            <th>ID</th>
-                            <th>Employee</th>
-                            <th>Key</th>
-                            <th>Program name</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                        @foreach($keys as $key )
-                            <tr>
-                                <td>{{ $key->id }}</td>
-                                <td>
-                                    @foreach ($employees as $employee)
-                                        @if ($employee->id == $key->employee_id)
-                                            {{ $employee->name }} {{ $employee->surname }}
-                                        @endif
-                                    @endforeach
-                                </td>
-                                <td>{{ $key->key }}</td>
-                                <td>{{ $key->program_name }}</td>
-                                <td>
-                                    <a href="{{ route('keys.edit', ['key' => $key]) }}">Edit</a>
-                                </td>
-                                <td>
-                                    <form method="post" action="{{ route('keys.delete', ['key' => $key]) }}">
-                                        @csrf
-                                        @method('delete')
-                                        <input type="submit" value="Delete">
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table> --}}
-
     
                 </div>
             </div>
