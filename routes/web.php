@@ -27,3 +27,8 @@ Route::put('/employees/{employee}/update', [EmployeesController::class, 'update'
 Route::delete('/employees/{employee}/delete', [EmployeesController::class, 'delete'])->name('employees.delete');
 
 Route::get('/keys', [KeysController::class, 'index'])->name('keys.index');
+Route::get('/keys/create', [KeysController::class, 'create'])->name('keys.create');
+Route::post('/keys', [KeysController::class, 'store'])->name('keys.store');
+Route::get('/keys/{key}/edit', [KeysController::class, 'edit'])->name('keys.edit');
+Route::put('/keys/{key}/update', [KeysController::class, 'update'])->name('keys.update');
+Route::delete('/keys/{key}/delete', [KeysController::class, 'delete'])->name('keys.delete');

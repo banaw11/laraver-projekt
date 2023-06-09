@@ -19,7 +19,7 @@
         @endif
     </div>
 
-    <form action="{{ route('employees.update', ['employee' => $employee])}}" method="post">
+    <form action="{{ route('employees.update', ['employee' => $employee]) }}" method="post">
         @csrf
         @method('put')
         <div>
