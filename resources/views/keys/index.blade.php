@@ -19,6 +19,8 @@
 
                     <a class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" href="{{ route('keys.create') }}">Add new key</a>
 
+                    
+
                     <div class="flex flex-col">
                         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -46,7 +48,9 @@
                                                             @endif
                                                         @endforeach
                                                     </td>
-                                                    <td class="whitespace-nowrap px-6 py-4">{{ $key->key }}</td>
+                                                    <td class="whitespace-nowrap px-6 py-4">
+                                                        <input type="password" name="key" value="{{ $key->key }}" readonly  onclick="test(event)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                                    </td>
                                                     <td class="whitespace-nowrap px-6 py-4">{{ $key->program_name }}</td>
                                                     <td class="whitespace-nowrap px-6 py-4">
                                                         <a class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" href="{{ route('keys.edit', ['key' => $key]) }}">Edit</a>
@@ -73,3 +77,17 @@
         </div>
     </div>
 </x-app-layout>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+    function test(e) {
+        if($(e.target).attr('type') === 'password'){
+            $(e.target).attr('type', 'text');
+        }
+        else{
+            $(e.target).attr('type', 'password');
+        }
+    }
+</script>
