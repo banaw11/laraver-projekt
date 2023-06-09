@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employees;
+use Illuminate\Validation\Rule;
 
 class EmployeesController extends Controller
 {
@@ -39,7 +40,11 @@ class EmployeesController extends Controller
             $request->validate([
                 'name' => 'required|min:3|max:25',
                 'surname' => 'required|min:2|max:35',
-                'email' => 'required|email'
+                'email' => [
+                    'required',
+                    'email',
+                    Rule::unique('employees', 'email')->ignore($employee->id)
+                ]
             ])
         );
         return redirect(route('employees.index'))->with('success', 'Updated completed!');

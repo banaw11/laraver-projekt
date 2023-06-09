@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employees;
 use App\Models\Keys;
+use Illuminate\Validation\Rule;
 
 class KeysController extends Controller
 {
@@ -43,7 +44,10 @@ class KeysController extends Controller
         $key->update(
             $request->validate([
                 'employee_id' => 'required',
-                'key' => 'required',
+                'key' => [
+                    'required', 
+                    Rule::unique('keys', 'key')->ignore($key->id),
+                ],                    
                 'program_name' => 'required'
             ])
         );
