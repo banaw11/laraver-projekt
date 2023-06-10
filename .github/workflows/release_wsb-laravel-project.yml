@@ -30,14 +30,6 @@ jobs:
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
-        
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.5.2
-        with:
-          node-version: 14
-          
-      - name: Build project
-        run: npm run build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
